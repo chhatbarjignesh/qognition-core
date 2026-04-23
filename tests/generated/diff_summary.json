@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-04-23T16:33:19Z",
+  "branch": "feature/sample-change",
+  "base": "master",
+  "repos": [
+    {"repo":"qognition-ui","branch":"feature/sample-change","status":"changes_found","files":[{"path":"src/App.tsx","type":"tsx"}]},
+    {"repo":"qognition-api","branch":"feature/sample-change","status":"changes_found","files":[{"path":"src/main/resources/application.properties","type":"properties"}]}
+  ]
+}

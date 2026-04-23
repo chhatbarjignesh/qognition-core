@@ -1,14 +1,7 @@
 #!/bin/bash
 
-# ─────────────────────────────────────────
-# qognition-core: fetch_diff.sh
-# Compares a feature branch vs master
-# across qognition-ui and qognition-api
-# ─────────────────────────────────────────
-
 set -e
 
-# ── Config ──────────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 UI_REPO="$ROOT_DIR/../qognition-ui"
@@ -34,58 +27,51 @@ analyse_repo() {
   local REPO_PATH="$1"
   local REPO_NAME="$2"
 
-  echo "──────────────────────────────────────"
-  echo "  Repo: $REPO_NAME"
-  echo "──────────────────────────────────────"
+  echo "──────────────────────────────────────" >&2
+  echo "  Repo: $REPO_NAME"                     >&2
+  echo "──────────────────────────────────────" >&2
 
   cd "$REPO_PATH"
-
-  # Fetch latest
   git fetch origin --quiet
 
-  # Check branch exists
   if ! git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
-    echo "  ⚠️  Branch '$BRANCH' not found in $REPO_NAME — skipping"
-    echo '{"repo":"'"$REPO_NAME"'","branch":"'"$BRANCH"'","status":"branch_not_found","files":[]}' 
+    echo "  ⚠️  Branch '$BRANCH' not found in $REPO_NAME — skipping" >&2
+    echo '{"repo":"'"$REPO_NAME"'","branch":"'"$BRANCH"'","status":"branch_not_found","files":[]}'
     return
   fi
 
-  # Get changed files
   CHANGED_FILES=$(git diff --name-only "origin/$BASE...origin/$BRANCH" 2>/dev/null || echo "")
 
   if [ -z "$CHANGED_FILES" ]; then
-    echo "  ✅ No changes detected"
+    echo "  ✅ No changes detected" >&2
     echo '{"repo":"'"$REPO_NAME"'","branch":"'"$BRANCH"'","status":"no_changes","files":[]}'
     return
   fi
 
-  echo ""
-  echo "  Changed files:"
-  echo "$CHANGED_FILES" | while read -r f; do echo "    → $f"; done
-  echo ""
+  echo "" >&2
+  echo "  Changed files:" >&2
+  echo "$CHANGED_FILES" | while read -r f; do echo "    → $f" >&2; done
+  echo "" >&2
 
-  # Classify each file
-  JAVA_FILES=$(echo "$CHANGED_FILES" | grep '\.java$' || true)
-  TSX_FILES=$(echo "$CHANGED_FILES"  | grep '\.tsx\?$' || true)
-  CSS_FILES=$(echo "$CHANGED_FILES"  | grep '\.css$' || true)
+  JAVA_FILES=$(echo "$CHANGED_FILES"   | grep '\.java$'                      || true)
+  TSX_FILES=$(echo "$CHANGED_FILES"    | grep '\.tsx\?$'                     || true)
+  CSS_FILES=$(echo "$CHANGED_FILES"    | grep '\.css$'                       || true)
   CONFIG_FILES=$(echo "$CHANGED_FILES" | grep -E '\.(properties|yml|yaml|env)$' || true)
-  TEST_FILES=$(echo "$CHANGED_FILES"  | grep -iE '(test|spec)' || true)
+  TEST_FILES=$(echo "$CHANGED_FILES"   | grep -iE '(test|spec)'              || true)
 
-  # Print classification
-  [ -n "$JAVA_FILES"   ] && echo "  🟠 Java/Backend changes detected"
-  [ -n "$TSX_FILES"    ] && echo "  🔵 React/Frontend changes detected"
-  [ -n "$CSS_FILES"    ] && echo "  🎨 CSS changes detected"
-  [ -n "$CONFIG_FILES" ] && echo "  ⚙️  Config changes detected"
-  [ -n "$TEST_FILES"   ] && echo "  🧪 Test file changes detected"
-  echo ""
+  [ -n "$JAVA_FILES"   ] && echo "  🟠 Java/Backend changes detected"   >&2
+  [ -n "$TSX_FILES"    ] && echo "  🔵 React/Frontend changes detected"  >&2
+  [ -n "$CSS_FILES"    ] && echo "  🎨 CSS changes detected"             >&2
+  [ -n "$CONFIG_FILES" ] && echo "  ⚙️  Config changes detected"         >&2
+  [ -n "$TEST_FILES"   ] && echo "  🧪 Test file changes detected"       >&2
+  echo "" >&2
 
-  # Build JSON file list
   FILES_JSON=$(echo "$CHANGED_FILES" | awk '{
-    split($0, parts, "/")
     ext = $0; sub(/.*\./, "", ext)
     print "{\"path\":\"" $0 "\",\"type\":\"" ext "\"}"
   }' | paste -sd ',' -)
 
+  # Only JSON goes to stdout — terminal output all goes to stderr
   echo '{"repo":"'"$REPO_NAME"'","branch":"'"$BRANCH"'","status":"changes_found","files":['"$FILES_JSON"']}'
 }
 
@@ -93,7 +79,7 @@ analyse_repo() {
 UI_JSON=$(analyse_repo  "$UI_REPO"  "qognition-ui")
 API_JSON=$(analyse_repo "$API_REPO" "qognition-api")
 
-# ── Write combined JSON output ───────────
+# ── Write clean JSON output ──────────────
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 cat > "$OUTPUT_FILE" <<JSON
@@ -108,9 +94,9 @@ cat > "$OUTPUT_FILE" <<JSON
 }
 JSON
 
-echo "──────────────────────────────────────"
-echo "  ✅ Summary written to:"
-echo "     $OUTPUT_FILE"
-echo "──────────────────────────────────────"
-echo ""
+echo "──────────────────────────────────────" >&2
+echo "  ✅ Summary written to:"               >&2
+echo "     $OUTPUT_FILE"                      >&2
+echo "──────────────────────────────────────" >&2
+echo "" >&2
 
