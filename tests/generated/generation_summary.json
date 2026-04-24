@@ -1,0 +1,18 @@
+{
+  "branch": "feature/sample-change",
+  "base": "master",
+  "generated": [
+    {
+      "repo": "qognition-ui",
+      "repo_type": "frontend",
+      "test_type": "e2e",
+      "file": "qognition_ui_e2e.spec.ts"
+    },
+    {
+      "repo": "qognition-api",
+      "repo_type": "backend",
+      "test_type": "api",
+      "file": "QognitionApiPropertiesTest.java"
+    }
+  ]
+}

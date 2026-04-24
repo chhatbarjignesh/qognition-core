@@ -1,0 +1,274 @@
+{
+  "config": {
+    "configFile": "/Users/chhatbarjignesh/qognition-core/playwright.config.ts",
+    "rootDir": "/Users/chhatbarjignesh/qognition-core/tests/generated",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/chhatbarjignesh/qognition-core/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/chhatbarjignesh/qognition-core/tests/generated",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "tests/results/playwright_results.json"
+        }
+      ],
+      [
+        "/Users/chhatbarjignesh/qognition-core/node_modules/@reportportal/agent-js-playwright/build/index.js",
+        {
+          "apiKey": "github_I4d4ZL2SQUmdeX77p3U7rsDp7p9jABVAYNDYTrP3U6T-0FRId7DpXK-6jaArLLkU",
+          "endpoint": "https://demo.reportportal.io/api/v1",
+          "project": "CHHATBARJIGNESH_PERSONAL",
+          "launch": "qognition-e2e",
+          "description": "AI Generated E2E Tests",
+          "attributes": [
+            {
+              "key": "branch",
+              "value": "feature/sample-change"
+            }
+          ]
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "qognition_ui_e2e.spec.ts",
+      "file": "qognition_ui_e2e.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Qognition - App Shell and Navigation",
+          "file": "qognition_ui_e2e.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Happy Path: should render the application header and main navigation links",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 522,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-23T21:44:15.150Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6452b09a18c063035111-46c85e846460c6004c4a",
+              "file": "qognition_ui_e2e.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "Happy Path: should navigate between primary modules correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 642,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-23T21:44:15.974Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6452b09a18c063035111-fb71be5b93e6ed67591d",
+              "file": "qognition_ui_e2e.spec.ts",
+              "line": 24,
+              "column": 7
+            },
+            {
+              "title": "Negative Test: should display a user-friendly 404 error page for invalid routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 534,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-23T21:44:16.634Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6452b09a18c063035111-3c11713121cb492c4834",
+              "file": "qognition_ui_e2e.spec.ts",
+              "line": 44,
+              "column": 7
+            },
+            {
+              "title": "Edge Case: should handle responsive navigation menu on mobile viewports",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 492,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-23T21:44:17.182Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6452b09a18c063035111-62091f07ad8aacb5da22",
+              "file": "qognition_ui_e2e.spec.ts",
+              "line": 61,
+              "column": 7
+            },
+            {
+              "title": "Edge Case: should maintain current route and application layout on page refresh",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 556,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-23T21:44:17.687Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6452b09a18c063035111-096c42b9f03bc55778ce",
+              "file": "qognition_ui_e2e.spec.ts",
+              "line": 84,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-23T21:44:14.526Z",
+    "duration": 3778.281,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
