@@ -234,29 +234,29 @@ results to ReportPortal automatically after every run.
 qognition-core/  
 .
 ├── .claude  
-    └── SKILL.md                    # Automation skill definition  
+    └── SKILL.md                               # Automation skill definition  
 ├── scripts  
-    ├── fetch_diff.sh               # Phase 2: diff detection 
-    ├── generate_tests.py           # Phase 3: AI test generation  
-    └── run_tests.py                # Phase 4: execution + reporting  
+    ├── fetch_diff.sh                          # Phase 2: diff detection 
+    ├── generate_tests.py                      # Phase 3: AI test generation  
+    └── run_tests.py                           # Phase 4: execution + reporting  
 ├── tests
-    ├── generated                   # AI generated tests land here 
+    ├── generated                              # AI generated tests land here 
         ├── diff_summary.json  
         ├── generation_summary.json  
-        ├── *.spec.ts               # Playwright tests  
-        └── *.java                  # REST Assured tests  
+        ├── *.spec.ts                          # Playwright tests  
+        └── *.java                             # REST Assured tests  
     └── results   
-        └── test_results.json       # Execution results  
-├── api-tests                       # Maven project for Java tests  
+        └── test_results.json                  # Execution results  
+├── api-tests                                  # Maven project for Java tests  
     ├── pom.xml  
     └── src/test   
-        ├── java/com/qognition      # Synced Java test files  
+        ├── java/com/qognition                 # Synced Java test files  
         └── resources   
             └── reportportal.properties  
-├── docker-compose.yml              # Wires UI + API  
-├── playwright.config.ts            # Playwright + RP config  
-├── .env.example                    # Credentials template  
-└── requirements.txt                # Python dependencies  
+├── docker-compose.yml                         # Wires UI + API  
+├── playwright.config.ts                       # Playwright + RP config  
+├── .env.example                               # Credentials template  
+└── requirements.txt                           # Python dependencies  
 
 ---
 
