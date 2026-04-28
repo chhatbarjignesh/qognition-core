@@ -235,6 +235,7 @@ Every run executes **both** stable and generated tests together.
 ## 📊 Test Results & Reporting
 
 ### Terminal Output
+```
 ╔══════════════════════════════════════╗
 ║           execution summary          ║
 ╚══════════════════════════════════════╝
@@ -244,6 +245,7 @@ Total passed : 15
 Total failed : 0
 Overall      : ✅ ALL PASSED
 📊 ReportPortal → https://your-rp-host/ui/#project/launches
+```
 
 ### JSON Report
 
