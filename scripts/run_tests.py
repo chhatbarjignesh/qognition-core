@@ -33,13 +33,28 @@ def extract_specs(suites):
 def sync_java_tests():
     dest = ROOT_DIR / "api-tests/src/test/java/com/qognition"
     dest.mkdir(parents=True, exist_ok=True)
+
+    # Clean stale files
     for old in dest.glob("*.java"):
         old.unlink()
-        print(f"  🗑️  Removed stale file: {old.name}")
+        print(f"  🗑️  Removed: {old.name}")
+
+    # Sync generated tests
+    gen_count = 0
     for f in GENERATED.glob("*.java"):
-        target = dest / f.name
-        target.write_text(f.read_text())
-        print(f"  📂 Synced {f.name} → api-tests/")
+        (dest / f.name).write_text(f.read_text())
+        print(f"  📂 Generated → {f.name}")
+        gen_count += 1
+
+    # Sync stable tests
+    stable_be = ROOT_DIR / "tests/stable/backend"
+    stable_count = 0
+    for f in stable_be.glob("*.java"):
+        (dest / f.name).write_text(f.read_text())
+        print(f"  📚 Stable    → {f.name}")
+        stable_count += 1
+
+    print(f"  ✅ Synced {gen_count} generated + {stable_count} stable test(s)")
 
 def run_playwright():
     print()

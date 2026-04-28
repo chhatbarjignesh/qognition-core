@@ -22,7 +22,6 @@ echo "  Branch : $BRANCH"
 echo "  Base   : $BASE"
 echo ""
 
-# ── Helper: analyse diff in a repo ──────
 analyse_repo() {
   local REPO_PATH="$1"
   local REPO_NAME="$2"
@@ -53,33 +52,67 @@ analyse_repo() {
   echo "$CHANGED_FILES" | while read -r f; do echo "    → $f" >&2; done
   echo "" >&2
 
-  JAVA_FILES=$(echo "$CHANGED_FILES"   | grep '\.java$'                      || true)
-  TSX_FILES=$(echo "$CHANGED_FILES"    | grep '\.tsx\?$'                     || true)
-  CSS_FILES=$(echo "$CHANGED_FILES"    | grep '\.css$'                       || true)
+  # ── Classification ───────────────────────
+  JAVA_FILES=$(echo "$CHANGED_FILES"   | grep '\.java$'                         || true)
+  TSX_FILES=$(echo "$CHANGED_FILES"    | grep -E '\.tsx?$'                      || true)
+  CSS_FILES=$(echo "$CHANGED_FILES"    | grep '\.css$'                          || true)
   CONFIG_FILES=$(echo "$CHANGED_FILES" | grep -E '\.(properties|yml|yaml|env)$' || true)
-  TEST_FILES=$(echo "$CHANGED_FILES"   | grep -iE '(test|spec)'              || true)
+  TEST_FILES=$(echo "$CHANGED_FILES"   | grep -iE '(test|spec)'                 || true)
 
-  [ -n "$JAVA_FILES"   ] && echo "  🟠 Java/Backend changes detected"   >&2
-  [ -n "$TSX_FILES"    ] && echo "  🔵 React/Frontend changes detected"  >&2
-  [ -n "$CSS_FILES"    ] && echo "  🎨 CSS changes detected"             >&2
-  [ -n "$CONFIG_FILES" ] && echo "  ⚙️  Config changes detected"         >&2
-  [ -n "$TEST_FILES"   ] && echo "  🧪 Test file changes detected"       >&2
+  [ -n "$JAVA_FILES"   ] && echo "  🟠 Java/Backend changes"   >&2
+  [ -n "$TSX_FILES"    ] && echo "  🔵 React/Frontend changes"  >&2
+  [ -n "$CSS_FILES"    ] && echo "  🎨 CSS changes"             >&2
+  [ -n "$CONFIG_FILES" ] && echo "  ⚙️  Config changes"         >&2
+  [ -n "$TEST_FILES"   ] && echo "  🧪 Test file changes"       >&2
   echo "" >&2
 
-  FILES_JSON=$(echo "$CHANGED_FILES" | awk '{
-    ext = $0; sub(/.*\./, "", ext)
-    print "{\"path\":\"" $0 "\",\"type\":\"" ext "\"}"
-  }' | paste -sd ',' -)
+  # ── Capture actual diff content per file ─
+  FILES_JSON=""
+  FIRST=true
 
-  # Only JSON goes to stdout — terminal output all goes to stderr
+  while IFS= read -r FILEPATH; do
+    [ -z "$FILEPATH" ] && continue
+
+    ext="${FILEPATH##*.}"
+
+    # Get the actual diff for this file
+    DIFF_CONTENT=$(git diff "origin/$BASE...origin/$BRANCH" -- "$FILEPATH" 2>/dev/null || echo "")
+
+    # Get full file content from feature branch
+    FILE_CONTENT=$(git show "origin/$BRANCH:$FILEPATH" 2>/dev/null || echo "")
+
+    # Escape for JSON — replace special chars
+    DIFF_ESCAPED=$(echo "$DIFF_CONTENT" | python3 -c "
+import sys, json
+content = sys.stdin.read()
+print(json.dumps(content))
+" 2>/dev/null || echo '""')
+
+    FILE_ESCAPED=$(echo "$FILE_CONTENT" | python3 -c "
+import sys, json
+content = sys.stdin.read()
+print(json.dumps(content))
+" 2>/dev/null || echo '""')
+
+    FILE_JSON='{"path":"'"$FILEPATH"'","type":"'"$ext"'","diff":'"$DIFF_ESCAPED"',"content":'"$FILE_ESCAPED"'}'
+
+    if [ "$FIRST" = true ]; then
+      FILES_JSON="$FILE_JSON"
+      FIRST=false
+    else
+      FILES_JSON="$FILES_JSON,$FILE_JSON"
+    fi
+
+    echo "  📄 Captured diff for: $FILEPATH" >&2
+
+  done <<< "$CHANGED_FILES"
+
   echo '{"repo":"'"$REPO_NAME"'","branch":"'"$BRANCH"'","status":"changes_found","files":['"$FILES_JSON"']}'
 }
 
-# ── Run analysis on both repos ───────────
 UI_JSON=$(analyse_repo  "$UI_REPO"  "qognition-ui")
 API_JSON=$(analyse_repo "$API_REPO" "qognition-api")
 
-# ── Write clean JSON output ──────────────
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 cat > "$OUTPUT_FILE" <<JSON

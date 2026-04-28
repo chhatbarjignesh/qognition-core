@@ -1,8 +1,11 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './tests/generated',
-  testMatch: '**/*.spec.ts',
+  testDir: './tests',
+  testMatch: [
+    'generated/**/*.spec.ts',
+    'stable/frontend/**/*.spec.ts'
+  ],
   timeout: 30000,
   outputDir: './test-results',
   reporter: [
@@ -13,7 +16,7 @@ export default defineConfig({
       endpoint:    process.env.RP_ENDPOINT  || '',
       project:     process.env.RP_PROJECT   || 'qognition',
       launch:      'qognition-e2e',
-      description: 'AI Generated E2E Tests',
+      description: 'Qognition E2E Tests — generated + stable',
       attributes:  [{ key: 'branch', value: process.env.BRANCH || 'feature' }],
     }],
   ],
