@@ -39,25 +39,25 @@ Results reported to terminal + JSON + ReportPortal
 ---
 
 ## 🏗️ Architecture
-┌──────────────────────────────────────────────────────┐
-│                    qognition-core                    │
-│                  (Automation Brain)                  │
-│                                                      │
-│  fetch_diff.sh ──► generate_tests.py ──► run_tests.py│
-│       │                  │                   │       │
-│   Git Diff           AI CLI              Playwright  │
-│   Analysis        (Gemini/Claude)      REST Assured  │
-│       │                  │                   │       │
-│  diff_summary       *.spec.ts          ReportPortal  │
-│     .json           *.java              + JSON       │
-└──────┬──────────────────────────────────────┬────────┘
-       │                                      │
-       ▼                                      ▼
-┌─────────────┐                      ┌─────────────────┐
-│qognition-ui │                      │ qognition-api   │
-│   React     │ ◄────── Tests ─────► │  Spring Boot    │
-│  Port 3000  │                      │   Port 8080     │
-└─────────────┘                      └─────────────────┘
+┌──────────────────────────────────────────────────────┐  
+│                    qognition-core                    │  
+│                  (Automation Brain)                  │  
+│                                                      │  
+│  fetch_diff.sh ──► generate_tests.py ──► run_tests.py│  
+│       │                  │                   │       │  
+│   Git Diff           AI CLI              Playwright  │  
+│   Analysis        (Gemini/Claude)      REST Assured  │  
+│       │                  │                   │       │  
+│  diff_summary       *.spec.ts          ReportPortal  │  
+│     .json           *.java              + JSON       │  
+└──────┬──────────────────────────────────────┬────────┘  
+       │                                      │  
+       ▼                                      ▼  
+┌─────────────┐                      ┌─────────────────┐  
+│qognition-ui │                      │ qognition-api   │  
+│   React     │ ◄────── Tests ─────► │  Spring Boot    │  
+│  Port 3000  │                      │   Port 8080     │  
+└─────────────┘                      └─────────────────┘  
 
 ### Repositories
 
@@ -230,31 +230,31 @@ results to ReportPortal automatically after every run.
 ---
 
 ## 📁 Project Structure
-qognition-core/
-├── .claude/
-│   └── SKILL.md                  ← Automation skill definition
-├── scripts/
-│   ├── fetch_diff.sh             ← Phase 2: diff detection
-│   ├── generate_tests.py         ← Phase 3: AI test generation
-│   └── run_tests.py              ← Phase 4: execution + reporting
-├── tests/
-│   ├── generated/                ← AI generated tests land here
-│   │   ├── diff_summary.json
-│   │   ├── generation_summary.json
-│   │   ├── *.spec.ts             ← Playwright tests
-│   │   └── *.java                ← REST Assured tests
-│   └── results/
-│       └── test_results.json     ← Execution results
-├── api-tests/                    ← Maven project for Java tests
-│   ├── pom.xml
-│   └── src/test/
-│       ├── java/com/qognition/   ← Synced Java test files
-│       └── resources/
-│           └── reportportal.properties
-├── docker-compose.yml            ← Wires UI + API
-├── playwright.config.ts          ← Playwright + RP config
-├── .env.example                  ← Credentials template
-└── requirements.txt              ← Python dependencies
+qognition-core/  
+├── .claude/  
+│   └── SKILL.md                  ← Automation skill definition  
+├── scripts/  
+│   ├── fetch_diff.sh             ← Phase 2: diff detection 
+│   ├── generate_tests.py         ← Phase 3: AI test generation  
+│   └── run_tests.py              ← Phase 4: execution + reporting  
+├── tests/ 
+│   ├── generated/                ← AI generated tests land here 
+│   │   ├── diff_summary.json  
+│   │   ├── generation_summary.json  
+│   │   ├── *.spec.ts             ← Playwright tests  
+│   │   └── *.java                ← REST Assured tests  
+│   └── results/  
+│       └── test_results.json     ← Execution results  
+├── api-tests/                    ← Maven project for Java tests  
+│   ├── pom.xml  
+│   └── src/test/  
+│       ├── java/com/qognition/   ← Synced Java test files  
+│       └── resources/  
+│           └── reportportal.properties  
+├── docker-compose.yml            ← Wires UI + API  
+├── playwright.config.ts          ← Playwright + RP config  
+├── .env.example                  ← Credentials template  
+└── requirements.txt              ← Python dependencies  
 
 ---
 
