@@ -39,7 +39,7 @@ Results reported to terminal + JSON + ReportPortal
 ---
 
 ## 🏗️ Architecture
-┌─────────────────────────────────────────────────────┐
+┌──────────────────────────────────────────────────────┐
 │                    qognition-core                    │
 │                  (Automation Brain)                  │
 │                                                      │
