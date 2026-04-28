@@ -39,6 +39,7 @@ Results reported to terminal + JSON + ReportPortal
 ---
 
 ## 🏗️ Architecture
+```
 ┌────────────────────────────────────────────────────────┐  
 │                    qognition-core                      │  
 │                  (Automation Brain)                    │  
@@ -58,6 +59,7 @@ Results reported to terminal + JSON + ReportPortal
 │   React     │ ◄────── Tests ───────► │  Spring Boot    │  
 │  Port 3000  │                        │   Port 8080     │  
 └─────────────┘                        └─────────────────┘  
+```
 
 ### Repositories
 
