@@ -51,13 +51,13 @@ Results reported to terminal + JSON + ReportPortal
 │  diff_summary       *.spec.ts          ReportPortal  │
 │     .json           *.java              + JSON       │
 └──────┬──────────────────────────────────────┬────────┘
-│                                      │
-▼                                      ▼
-┌─────────────┐                     ┌─────────────────┐
-│qognition-ui │                     │ qognition-api   │
-│   React     │◄────── Tests ──────►│  Spring Boot    │
-│  Port 3000  │                     │   Port 8080     │
-└─────────────┘                     └─────────────────┘
+       │                                      │
+       ▼                                      ▼
+┌─────────────┐                      ┌─────────────────┐
+│qognition-ui │                      │ qognition-api   │
+│   React     │ ◄────── Tests ─────► │  Spring Boot    │
+│  Port 3000  │                      │   Port 8080     │
+└─────────────┘                      └─────────────────┘
 
 ### Repositories
 
