@@ -1,18 +1,24 @@
 {
-  "timestamp": "2026-04-23T21:54:24.583059+00:00",
+  "timestamp": "2026-04-28T18:44:19.492778+00:00",
   "branch": "feature/sample-change",
   "results": [
     {
       "framework": "rest-assured",
       "status": "passed",
-      "passed": 4,
+      "passed": 10,
       "failed": 0,
-      "duration": 2.59,
+      "duration": 6.36,
       "tests": [
         {
           "name": "TEST-com.qognition.QognitionApiPropertiesTest",
           "status": "passed",
           "passed": 4,
+          "failed": 0
+        },
+        {
+          "name": "TEST-com.qognition.UserControllerTest",
+          "status": "passed",
+          "passed": 6,
           "failed": 0
         }
       ]

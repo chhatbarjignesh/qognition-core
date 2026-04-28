@@ -1,18 +1,20 @@
 {
-  "branch": "feature/sample-change",
+  "run_label": "feature_user-endpoint_20260428_143234",
+  "branch": "feature/user-endpoint",
   "base": "master",
+  "provider": "gemini",
   "generated": [
-    {
-      "repo": "qognition-ui",
-      "repo_type": "frontend",
-      "test_type": "e2e",
-      "file": "qognition_ui_e2e.spec.ts"
-    },
     {
       "repo": "qognition-api",
       "repo_type": "backend",
       "test_type": "api",
-      "file": "QognitionApiPropertiesTest.java"
+      "file": "UserControllerTest.java",
+      "provider": "gemini",
+      "archived_to": "tests/archive/feature_user-endpoint_20260428_143234/"
     }
-  ]
+  ],
+  "stable": {
+    "frontend": [],
+    "backend": []
+  }
 }

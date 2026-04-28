@@ -83,8 +83,9 @@ Only test routes and elements that exist based on the diff above."""
         language       = "Java"
         example        = "given().when().get('/endpoint').then().statusCode(200)"
         base_url       = "http://localhost:8080"
-        extra = f"""The API runs at {base_url}.
+        extra = extra = f"""The API runs at {base_url}.
 Use RestAssured.baseURI = "{base_url}" in @BeforeAll.
+The package declaration MUST be: package com.qognition;
 Only test endpoints that are explicitly visible in the diff above.
 Do not invent endpoints that are not in the changed files."""
 

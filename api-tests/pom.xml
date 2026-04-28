@@ -26,18 +26,6 @@
       <version>5.10.0</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>com.epam.reportportal</groupId>
-      <artifactId>agent-java-junit5</artifactId>
-      <version>5.1.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.epam.reportportal</groupId>
-      <artifactId>logger-java-logback</artifactId>
-      <version>5.1.0</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
@@ -50,11 +38,6 @@
           <includes>
             <include>**/*Test.java</include>
           </includes>
-          <properties>
-            <configurationParameters>
-              junit.jupiter.extensions.autodetection.enabled=true
-            </configurationParameters>
-          </properties>
         </configuration>
       </plugin>
     </plugins>

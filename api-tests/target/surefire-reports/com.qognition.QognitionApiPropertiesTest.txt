@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.qognition.QognitionApiPropertiesTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.603 s -- in com.qognition.QognitionApiPropertiesTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.137 s -- in com.qognition.QognitionApiPropertiesTest
