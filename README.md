@@ -232,7 +232,7 @@ results to ReportPortal automatically after every run.
 ---
 
 ## 📁 Project Structure
-
+```
 qognition-core/  
 .  
 ├── .claude  
@@ -259,7 +259,7 @@ qognition-core/
 ├── playwright.config.ts                      # Playwright + RP config  
 ├── .env.example                              # Credentials template  
 └── requirements.txt                          # Python dependencies  
-
+```
 ---
 
 ## 🎬 Demo Script
