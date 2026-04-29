@@ -165,7 +165,9 @@ Switch between them to demonstrate provider-agnostic test generation.
 |----------|-----|---------|
 | Google Gemini | `gemini` | `npm install -g @google/gemini-cli` |
 | Anthropic Claude | `claude` | `npm install -g @anthropic-ai/claude-cli` |
+
 Interactive selection
+```
 python3 scripts/generate_tests.py
 ╔══════════════════════════════════════╗
 ║       qognition test generator       ║
@@ -177,7 +179,7 @@ Enter number or name (default: gemini):
 
 The provider used is recorded in `tests/generated/generation_summary.json`
 for traceability.
-
+```
 ---
 
 ## 🧠 Diff-Aware Test Generation
@@ -332,7 +334,7 @@ Use this flow when presenting Qognition to an audience:
 
 ### Act 3 — AI Takes Over (3 min)
 - Run `fetch_diff.sh` — show the JSON capturing actual diff lines
-- Point out: *"It read 49 lines of real Java code — not just the filename"*
+- Point out: *"It read 49 lines of real Java code and not just the filename"*
 - Run `generate_tests.py` — watch AI write tests in real time
 - Open the generated file — show it correctly identified all 3 endpoints,
   the static test data (Alice, Bob, Carol), and the case-insensitive logic
@@ -346,11 +348,11 @@ Use this flow when presenting Qognition to an audience:
 - Delete generated tests
 - Run `generate_tests.py claude` instead of gemini
 - Show Claude generating equivalent tests
-- **Key message**: provider-agnostic — swap AI models without touching the pipeline
+- **Key message**: provider-agnostic swap AI models without touching the pipeline
 
 ### Act 6 — Promote to Stable (1 min)
 - Copy the generated `UserControllerTest.java` to `tests/stable/backend/`
-- Explain: *"QA engineer reviews, approves, promotes — now it runs forever"*
+- Explain: *"QA engineer reviews, approves, promotes and now it runs forever"*
 - Next run will archive the generated version and always include the stable one
 
 ### 💬 Key Talking Points
